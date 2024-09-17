@@ -50,6 +50,6 @@ Enhanced Reports: Option to export detailed reports as PDFs.
 Graphs: Adding more charts for better financial insights (e.g., monthly expenses, category-based analysis).
 Recurring Transactions: Ability to add recurring transactions (rent, subscriptions, etc.).
 
-##Contributions
+- **Contributions
 Contributions are welcome! Feel free to open issues and submit pull requests to improve the project.
 
