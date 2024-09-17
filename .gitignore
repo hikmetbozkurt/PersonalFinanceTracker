@@ -1,0 +1,22 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*.so
+
+# Virtual environment
+venv/
+
+# Distribution / packaging
+.Python
+build/
+dist/
+
+# SQLite database files (if you want to ignore them)
+*.sqlite3
+*.db
+
+# Jupyter Notebooks
+.ipynb_checkpoints/
+
+# Logs and debugging
+*.log
