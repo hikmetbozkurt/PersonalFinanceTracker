@@ -1,0 +1,23 @@
+# GUI library for Python (built-in with Python)
+# Note: Tkinter is built-in with Python, no need to install it separately.
+
+# Data manipulation and management
+pandas==2.0.3
+
+# Data visualization (for charts and graphs)
+matplotlib==3.7.2
+
+# PDF generation for exporting reports
+fpdf==1.7.2
+
+# Optionally, you can use ReportLab for advanced PDF generation
+reportlab==4.0.4
+
+# Password hashing for secure login
+bcrypt==4.2.0  # Updated version
+
+# Testing libraries
+pytest==7.3.2
+
+# Optionally for type checking and static analysis
+mypy==1.3.1
