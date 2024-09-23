@@ -28,7 +28,8 @@ class FinanceTrackerApp(tk.Tk):
         super().__init__()
 
         self.title("Personal Finance Tracker")
-        self.geometry("900x700")  # Pencere boyutunu büyüttük
+        self.geometry("900x700")
+        self.resizable(False, False)  # Prevent resizing the window  # Pencere boyutunu büyüttük
 
         # Apply a modern theme
         style = ttk.Style(self)
@@ -92,6 +93,8 @@ class LoginFrame(ttk.Frame):
         # Login/Signup button
         self.submit_button = ttk.Button(self, text="Login", command=self.submit)
         self.submit_button.grid(row=3, column=0, columnspan=2, pady=20)
+        # Bind Enter key to the login button
+        self.master.bind("<Return>", lambda event: self.submit_button.invoke())
 
         # Toggle between Login/Signup
         self.toggle_button = ttk.Button(self, text="Don't have an account? Signup", command=self.toggle_mode)
@@ -376,9 +379,11 @@ class MainApplication(ttk.Frame):
     
         # Create a new window for the chart
         chart_window = tk.Toplevel(self)
+        chart_window.geometry("900x850")
+        #chart_window.resizable(False, False)
         chart_window.title("Financial Overview")
         chart_window.geometry("900x850")  # Daha geniş bir pencere boyutu
-        chart_window.resizable(True, True)  # Allow window resizing
+        chart_window.resizable(False, False)  # Allow window resizing
     
         # Create a frame for the header
         header_frame = ttk.Frame(chart_window)
@@ -462,8 +467,8 @@ class MainApplication(ttk.Frame):
         # Embed the chart in the Tkinter window
         canvas = FigureCanvasTkAgg(fig, master=chart_window)
         canvas.draw()
-        canvas.get_tk_widget().pack(fill=tk.BOTH, expand=True)  # Allow canvas to expand
-    
+        canvas.get_tk_widget().pack(fill=tk.BOTH, expand=False)  # Allow canvas to expand
+        canvas.get_tk_widget().config(width=600, height=400)
         # Update the chart when the window is resized
         def on_resize(event):
             # Prevent excessive redraws
@@ -473,20 +478,7 @@ class MainApplication(ttk.Frame):
                 fig.set_size_inches(new_width, new_height)
                 fig.tight_layout()
                 canvas.draw()
-    
-        chart_window.bind("<Configure>", on_resize)
-
-        # Update the chart when the window is resized
-        def on_resize(event):
-            # Prevent excessive redraws
-            if event.widget == chart_window:
-                new_width = event.width / 100
-                new_height = event.height / 100
-                fig.set_size_inches(new_width, new_height)
-                fig.tight_layout()
-                canvas.draw()
-
-        chart_window.bind("<Configure>", on_resize)
+        chart_window.bind('<Configure>', lambda event: canvas.draw())  # Her boyutlandırmada yeniden çizim
 
     def toggle_chart(self, canvas, ax, fig, chart_title_label, legend_frame):
         """Toggle the Pie Chart between Income vs Expenses and Expenses by Category"""
